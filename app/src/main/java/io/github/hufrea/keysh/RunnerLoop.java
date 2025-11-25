@@ -9,6 +9,7 @@ import android.content.Context;
 import io.github.hufrea.keysh.actions.ActionAudio;
 import io.github.hufrea.keysh.actions.ActionIntent;
 import io.github.hufrea.keysh.actions.ActionNotify;
+import io.github.hufrea.keysh.actions.ActionRequest;
 import io.github.hufrea.keysh.actions.ActionTorch;
 import io.github.hufrea.keysh.actions.ActionVibrate;
 
@@ -161,6 +162,13 @@ public class RunnerLoop {
 
             case "stop_media":
                 context.stopService(new Intent(context, ServiceMediaSession.class));
+                break;
+
+            case "request":
+                if (args.length != 3) {
+                    break;
+                }
+                ActionRequest.httpRequest(context, args);
                 break;
         }
     }
